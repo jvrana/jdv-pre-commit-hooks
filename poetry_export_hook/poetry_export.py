@@ -1,9 +1,9 @@
 import argparse
-from typing import Sequence
+import os
 import subprocess
 from typing import Any
 from typing import Optional
-import os
+from typing import Sequence
 
 
 class CalledProcessError(RuntimeError):
@@ -11,8 +11,8 @@ class CalledProcessError(RuntimeError):
 
 
 def cmd_output(*cmd: str, retcode: Optional[int] = 0, **kwargs: Any) -> str:
-    kwargs.setdefault('stdout', subprocess.PIPE)
-    kwargs.setdefault('stderr', subprocess.PIPE)
+    kwargs.setdefault("stdout", subprocess.PIPE)
+    kwargs.setdefault("stderr", subprocess.PIPE)
     proc = subprocess.Popen(cmd, **kwargs)
     stdout, stderr = proc.communicate()
     stdout = stdout.decode()
@@ -22,19 +22,22 @@ def cmd_output(*cmd: str, retcode: Optional[int] = 0, **kwargs: Any) -> str:
 
 
 def compare(r1):
-    if not os.path.isfile('requirements.txt'):
+    if not os.path.isfile("requirements.txt"):
         return False
-    with open('requirements.txt', 'r') as f:
+    with open("requirements.txt") as f:
         r2 = f.read()
     return r1.strip() == r2.strip()
 
 
 def poetry_export():
     retv = 0
-    out = cmd_output('poetry', 'export', '-f', 'requirements.txt')
-    print(os.path.isfile('requirements.txt'))
-    if not os.path.isfile('requirements.txt') or open('requirements.txt', 'r').read().strip() != out.strip():
-        with open('requirements.txt', 'w') as f:
+    out = cmd_output("poetry", "export", "-f", "requirements.txt")
+    print(os.path.isfile("requirements.txt"))
+    if (
+        not os.path.isfile("requirements.txt")
+        or open("requirements.txt").read().strip() != out.strip()
+    ):
+        with open("requirements.txt", "w") as f:
             f.write(out)
         retv = 1
     return retv
@@ -55,12 +58,13 @@ def run(filenames):
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'filenames', nargs='*',
-        help='Filenames pre-commit believes are changed.',
+        "filenames",
+        nargs="*",
+        help="Filenames pre-commit believes are changed.",
     )
     args = parser.parse_args(argv)
     return run(args.filenames)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(main())
