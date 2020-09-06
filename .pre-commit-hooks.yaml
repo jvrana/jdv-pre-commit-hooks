@@ -3,5 +3,5 @@
     description: creates `requirements.txt` file from `pyproject.toml`
     entry: poetry_export
     language: python
-    always_run: true
-    pass_filenames: false
+    always_run: false
+    pass_filenames: true
