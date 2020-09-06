@@ -1,5 +1,7 @@
 # poetry-export-hook
 
+![Python package](https://github.com/jvrana/poetry-export-hook/workflows/Python%20package/badge.svg)
+
 [Pre-commit](https://pre-commit.com/) hook for exporting `requirements.txt` from `pyproject.toml` using [poetry](https://python-poetry.org/).
 
 Basic usage:
