@@ -22,35 +22,37 @@ def cmd_output(*cmd: str, retcode: Optional[int] = 0, **kwargs: Any) -> str:
     return stdout
 
 
-def filehash(fname: str) -> str:
-    return hashlib.md5(open(fname,'rb').read()).hexdigest()
-
-
-def checksum(fname: str) -> bool:
-    newchecksum = filehash(fname)
-    oldchecksum = open(fname + ".checksum", 'r').read()
-    return newchecksum == oldchecksum
-
-
-def get_filehash_name(fname: str):
-    return '.' + fname + '.checksum'
-
-
-def save_filehash(fname: str):
-    with open(get_filehash_name(fname), 'w') as f:
-        f.write(filehash(fname))
-
-
-def get_filehash(fname: str):
-    with open(get_filehash_name(fname), 'r') as f:
-        f.read(f)
+def compare(r1):
+    if not os.path.isfile('requirements.txt'):
+        return False
+    with open('requirements.txt', 'r') as f:
+        r2 = f.read()
+    return r1.strip() == r2.strip()
 
 
 def poetry_export():
+    retv = 0
     out = cmd_output('poetry', 'export', '-f', 'requirements.txt')
-    with open('requirements.txt', 'w') as f:
-        f.write(out)
-    save_filehash('requirements.txt')
+    print(os.path.isfile('requirements.txt'))
+    if not os.path.isfile('requirements.txt') or open('requirements.txt', 'r').read().strip() != out.strip():
+        with open('requirements.txt', 'w') as f:
+            f.write(out)
+        retv = 1
+    return retv
+
+
+PYPROJECT = "pyproject.toml"
+POETRYLOCK = "poetry.lock"
+REQUIREMENTS = "requirements.txt"
+
+def run(filenames):
+    retv = 0
+    print(filenames)
+    if {PYPROJECT, POETRYLOCK, REQUIREMENTS}.intersection(set(filenames)):
+        retv = poetry_export()
+    else:
+        print("skipping")
+    return retv
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -60,12 +62,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         help='Filenames pre-commit believes are changed.',
     )
     args = parser.parse_args(argv)
-
-    retv = 0
-    if 'pyproject.toml' in args.filenames or not os.path.isfile(get_filehash_name('requirements.txt')):
-        poetry_export()
-        retv = 1
-    return retv
+    return run(args.filenames)
 
 
 if __name__ == '__main__':
