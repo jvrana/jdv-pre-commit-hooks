@@ -3,6 +3,10 @@ repos:
     rev: 0.0.1a3
     hooks:
     -   id: poetry-export
+        args: ['-vvv']
+    -   id: poetry-export
+        name: export-dev
+        args: ['--requirements', 'requirements-dev.txt', '--dev', '-vvv']
 -   repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
