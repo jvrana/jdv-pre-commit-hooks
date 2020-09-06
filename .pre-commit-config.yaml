@@ -1,6 +1,6 @@
 repos:
--   repo: https://github.com/jvrana/jdv-pre-commit-hooks
-    rev: 0.0.1a1
+-   repo: https://github.com/jvrana/poetry-export-hook
+    rev: 0.0.1a2
     hooks:
     -   id: poetry-export
 -   repo: https://github.com/psf/black

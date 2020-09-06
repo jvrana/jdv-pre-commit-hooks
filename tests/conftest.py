@@ -1,27 +1,14 @@
-import pytest
-from poetry_export.util import cmd_output
-
-pyprojecttoml = """
-[tool.poetry]
-name = "jdv-pre-commit-hooks"
-version = "0.1.0"
-description = ""
-authors = ["Justin Vrana <justin.vrana@gmail.com>"]
-
-[tool.poetry.dependencies]
-python = "^3.7"
-
-
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
-""".strip()
-
-from os.path import isfile, abspath, dirname, join
 import shutil
+from os.path import abspath
+from os.path import dirname
+from os.path import join
 
+import pytest
+
+from poetry_export_hook.poetry_export import cmd_output
+from poetry_export_hook.poetry_export import logger
+
+logger.setLevel("DEBUG")
 here = dirname(abspath(__file__))
 
 
