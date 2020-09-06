@@ -1,6 +1,5 @@
 import argparse
 from typing import Sequence
-import hashlib
 import subprocess
 from typing import Any
 from typing import Optional
@@ -45,13 +44,11 @@ PYPROJECT = "pyproject.toml"
 POETRYLOCK = "poetry.lock"
 REQUIREMENTS = "requirements.txt"
 
+
 def run(filenames):
     retv = 0
-    print(filenames)
     if {PYPROJECT, POETRYLOCK, REQUIREMENTS}.intersection(set(filenames)):
         retv = poetry_export()
-    else:
-        print("skipping")
     return retv
 
 
