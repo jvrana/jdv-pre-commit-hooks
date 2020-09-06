@@ -10,6 +10,7 @@ import os
 class CalledProcessError(RuntimeError):
     pass
 
+
 def cmd_output(*cmd: str, retcode: Optional[int] = 0, **kwargs: Any) -> str:
     kwargs.setdefault('stdout', subprocess.PIPE)
     kwargs.setdefault('stderr', subprocess.PIPE)
