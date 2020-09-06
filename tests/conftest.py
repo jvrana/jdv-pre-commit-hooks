@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_hooks.util import cmd_output
+from poetry_export.util import cmd_output
 
 pyprojecttoml = """
 [tool.poetry]

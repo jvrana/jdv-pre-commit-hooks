@@ -1,4 +1,4 @@
-from pre_commit_hooks.poetry_export import main, cmd_output
+from poetry_export.poetry_export import main, cmd_output
 
 
 def test_adding_nothing(temp_dir):
