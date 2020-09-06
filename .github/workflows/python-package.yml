@@ -39,12 +39,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: Install pre-commit
-      run: |
-        pip install pre-commit
-    - name: Restore pre-commit
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: pre-commit install
     - name: Run pre-commit
-      run: |
-        pre-commit run --all
+      uses: pre-commit/action@v2.0.0
