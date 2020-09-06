@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/jvrana/poetry-export-hook
-    rev: 0.0.1a3
+    rev: 0.0.1
     hooks:
     -   id: poetry-export
         args: ['-vvv']
