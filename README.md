@@ -1,9 +1,12 @@
 # poetry-export-hook
 
 ![Python package](https://github.com/jvrana/poetry-export-hook/workflows/Python%20package/badge.svg)
-[Pre-commit](https://pre-commit.com/) hook for exporting `requirements.txt` from `pyproject.toml` using [poetry](https://python-poetry.org/).
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/jvrana/poetry-export-hook.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jvrana/poetry-export-hook/context:python)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/jvrana/poetry-export-hook.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jvrana/poetry-export-hook/alerts/)
+
+[Pre-commit](https://pre-commit.com/) hook for exporting `requirements.txt` from `pyproject.toml` using [poetry](https://python-poetry.org/).
 
 Basic usage:
 
