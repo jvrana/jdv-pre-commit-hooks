@@ -1,4 +1,4 @@
-# ARCHIVED: Please use https://github.com/jrana/poetry-hooks
+# ARCHIVED: Please use https://github.com/jvrana/poetry-hooks
 
 # poetry-export-hook
 
