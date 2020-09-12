@@ -1,3 +1,5 @@
+# ARCHIVED: Please use https://github.com/jrana/poetry-hooks
+
 # poetry-export-hook
 
 ![Python package](https://github.com/jvrana/poetry-export-hook/workflows/Python%20package/badge.svg)
